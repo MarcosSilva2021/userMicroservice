@@ -1,0 +1,7 @@
+
+docker pull postgres
+
+docker run --name userMicroService -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123456 -e POSTGRES_DB=user_ms_db -p 5432:5432 -d postgres
+
+------------- enter database by terminal ------------
+docker exec -it userMicroService psql -U admin -d user_ms_db
