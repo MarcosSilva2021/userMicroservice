@@ -5,3 +5,10 @@ docker run --name userMicroService -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=1
 
 ------------- enter database by terminal ------------
 docker exec -it userMicroService psql -U admin -d user_ms_db
+
+-------------update Container ----------
+docker update \
+--memory 256m \
+--memory-swap 512m \
+--cpus 0.5 \
+userMicroService
