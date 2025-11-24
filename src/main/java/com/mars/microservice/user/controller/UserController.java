@@ -2,6 +2,7 @@ package com.mars.microservice.user.controller;
 
 import com.mars.microservice.user.dtos.UserRecordDto;
 import com.mars.microservice.user.models.UserModel;
+import com.mars.microservice.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -13,13 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
+    final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/users")
     public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserRecordDto userRecordDto){
 
         var userModel = new UserModel();
         BeanUtils.copyProperties(userRecordDto, userModel);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body();
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(userModel));
 
     }
 }
