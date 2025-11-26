@@ -1,0 +1,5 @@
+inserir usuário:
+{
+	"name": "Fulano dos Santos",
+    "email": "fulanosantos@email.com"
+}
