@@ -1,5 +1,6 @@
 package com.mars.microservice.user.producers;
 
+import com.mars.microservice.user.dtos.EmailDto;
 import com.mars.microservice.user.models.UserModel;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ public class UserProducer {
         emailDto.setSubject("Cadastro realizado com sucesso !");
         emailDto.setText(userModel.getName() + ", Seja bem Vindo(a) !! \nAgradecemos sua inscrição");
 
+        rabbitTemplate.convertAndSend("", routingKey, emailDto);
     }
 
 }
